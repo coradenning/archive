@@ -1,55 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>passport to us</title>
+    <title>our journey</title>
   </head>
 
   <body>
-    <h1>passport to us</h1>
+    <!-- top header with navigation -->
+    <header>
+      <p><strong>our journey</strong></p>
 
-    <p>
-      next arrival:
-      <strong>cora → arina</strong>
-    </p>
+      <nav aria-label="top navigation">
+        <ul>
+          <li><a href="daily-note.html">daily note</a></li>
+          <li><a href="stargaze.html">stargazing</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    <h2>countdown</h2>
+    <main>
+      <!-- main title -->
+      <h1>our journey</h1>
 
-    <p id="countdown">
-      loading...
-    </p>
+      <!-- boarding ticket-style card (structure only for now) -->
+      <section aria-label="boarding ticket">
+        <h2>boarding pass</h2>
 
-    <p>
-      issued feb 14 · valid for a lifetime
-    </p>
+        <p><strong>passengers:</strong> cora + arina</p>
+        <p><strong>from:</strong> (your hometown)</p>
+        <p><strong>to:</strong> (her hometown)</p>
+        <p><strong>status:</strong> boarding soon</p>
+        <p><strong>issued:</strong> (date)</p>
+      </section>
 
-    <script>
-      // set the date you want to count down to
-      const meetDate = new Date("2026-02-14T20:00:00-05:00");
+      <!-- countdown area with map behind it (layering comes later with css) -->
+      <section aria-label="countdown">
+        <h2>time until we meet</h2>
 
-      function updateCountdown() {
-        const now = new Date();
-        const diff = meetDate - now;
+        <!-- map background image (later you’ll style it to sit behind the countdown) -->
+        <figure>
+          <img src="assets/map-bg.png" alt="a world map showing our two hometowns with a line between them">
+          <figcaption>two places. one direction.</figcaption>
+        </figure>
 
-        if (diff <= 0) {
-          document.getElementById("countdown").textContent = "we made it 💖";
-          return;
-        }
+        <!-- countdown placeholder (js later) -->
+        <p>
+          countdown: <em>(coming soon)</em>
+        </p>
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
+        <p>
+          meet time: <em>(exact date + time coming soon)</em>
+        </p>
+      </section>
+    </main>
 
-        document.getElementById("countdown").textContent =
-          days + " days " +
-          hours + " hours " +
-          minutes + " minutes " +
-          seconds + " seconds";
-      }
+    <!-- bottom icon navigation like the mockup -->
+    <nav aria-label="bottom navigation">
+      <ul>
+        <li>
+          <a href="daily-note.html">
+            <img src="assets/nav-note.png" alt="daily note icon">
+            <span>daily note</span>
+          </a>
+        </li>
 
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    </script>
+        <li>
+          <a href="stargaze.html">
+            <img src="assets/nav-stars.png" alt="stargazing icon">
+            <span>stargazing</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- very bottom illustration + sweet sentence -->
+    <footer>
+      <!-- <figure>
+        <img src="assets/bottom-illustration.png" alt="a cute illustration of a cozy long-distance love moment">
+      </figure> -->
+
+      <p>
+        cute sentence
+      </p>
+    </footer>
   </body>
 </html>
