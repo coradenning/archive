@@ -1,1 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/daily-note.js" defer></script>
+    <title>daily note · our journey</title>
+  </head>
 
+  <body>
+    <header class="topbar">
+      <div>
+        <p><a class="site-title" href="index.html"><strong>our journey</strong></a></p>
+      </div>
+
+      <nav aria-label="top navigation">
+        <ul>
+          <li><a href="daily-note.html" aria-current="page">daily note</a></li>
+          <li><a href="stargaze.html">stargazing</a></li>
+          <li><a href="reasons.html">reasons</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h1>daily note</h1>
+
+      <p>
+        one small note, every day, until we meet.
+      </p>
+
+      <section aria-label="today's note">
+        <p>
+          <time datetime="2026-02-07">(date will auto-fill later)</time>
+        </p>
+
+        <article aria-label="note card">
+          <h3>note</h3>
+          <p id="daily-note-line">
+            <span id="daily-note-date"></span>
+            <span id="daily-note-text"></span>
+          </p>
+        </article>
+      </section>
+
+      <section aria-label="note list">
+        <h2>notes list (placeholders)</h2>
+        <ol id="note-list" data-start="2026-02-07"> <!--for a a different start date, change this value (format YYYY-MM-DD)-->
+            <li>i love how your mind notices details other people miss.</li>
+            <li>today i’m grateful that i get to love you.</li>
+            <li>you make hard days feel survivable.</li>
+            <li>i still get excited when i see your name.</li>
+            <li>you feel like home, even from far away.</li>
+            <li>i admire how thoughtful you are.</li>
+            <li>you make me want to be gentler with the world.</li>
+            <li>i love the way you explain things.</li>
+            <li>thinking about you makes my chest feel warm.</li>
+            <li>you’re my favorite person to talk to.</li>
+            
+            <li>i love how safe i feel with you.</li>
+            <li>you make ordinary moments special.</li>
+            <li>i’m proud of you for getting through today.</li>
+            <li>your laugh lives in my head rent free.</li>
+            <li>i love the way you care, even quietly.</li>
+            <li>you make the future feel real.</li>
+            <li>i trust you with my heart.</li>
+            <li>you’re so easy to love.</li>
+            <li>i like who i am when i’m with you.</li>
+            <li>you make me feel chosen.</li>
+            
+            <li>i love how your brain works.</li>
+            <li>you’re doing better than you think.</li>
+            <li>i love the way you say my name.</li>
+            <li>you make me feel understood.</li>
+            <li>i’m always on your side.</li>
+            <li>you’re my favorite comfort.</li>
+            <li>i love how genuine you are.</li>
+            <li>you make even waiting feel meaningful.</li>
+            <li>i believe in you deeply.</li>
+            <li>you’re my soft place to land.</li>
+            
+            <li>i love how you see the world.</li>
+            <li>you make me laugh when i least expect it.</li>
+            <li>i’m so thankful i get to love you.</li>
+            <li>you’re my favorite part of the day.</li>
+            <li>i admire your resilience.</li>
+            <li>you matter so much to me.</li>
+            <li>i love how caring you are with people you love.</li>
+            <li>you make distance feel smaller.</li>
+            <li>i’m proud to call you my partner.</li>
+            <li>you make my heart feel steady.</li>
+            
+            <li>i love how thoughtful your messages are.</li>
+            <li>you make me feel less alone.</li>
+            <li>i love how you try, even when things are hard.</li>
+            <li>you’re incredibly important to me.</li>
+            <li>i love building a future with you.</li>
+            <li>you make me feel calm.</li>
+            <li>i trust where we’re going.</li>
+            <li>you’re worth every mile between us.</li>
+            <li>i love how kind you are.</li>
+            <li>you feel like a gift.</li>
+            
+            <li>i love how open you are with me.</li>
+            <li>you make me feel emotionally safe.</li>
+            <li>i’m grateful for your patience.</li>
+            <li>you make my life brighter.</li>
+            <li>i love how deeply you feel.</li>
+            <li>you’re my favorite notification.</li>
+            <li>i love growing with you.</li>
+            <li>you make me feel grounded.</li>
+            <li>i love how honest you are.</li>
+            <li>you make love feel simple.</li>
+            
+            <li>i love how supportive you are.</li>
+            <li>you make me feel seen.</li>
+            <li>i admire your strength.</li>
+            <li>you’re my favorite constant.</li>
+            <li>i love the way you think things through.</li>
+            <li>you make my heart feel full.</li>
+            <li>i’m lucky to love you.</li>
+            <li>you make me feel brave.</li>
+            <li>i love how gentle you can be.</li>
+            <li>you make my days better.</li>
+            
+            <li>i love the way you care about things.</li>
+            <li>you’re my safe person.</li>
+            <li>i love imagining a life with you.</li>
+            <li>you make waiting worth it.</li>
+            <li>i trust us.</li>
+            <li>you make me feel hopeful.</li>
+            <li>i love how attentive you are.</li>
+            <li>you’re my favorite thought.</li>
+            <li>i love how you listen.</li>
+            <li>you make me feel valued.</li>
+            
+            <li>i love the way you exist.</li>
+            <li>you make love feel steady.</li>
+            <li>i admire how intentional you are.</li>
+            <li>you make me feel at peace.</li>
+            <li>i love how warm your presence feels.</li>
+            <li>you’re my favorite person.</li>
+            <li>i love how caring you are with me.</li>
+            <li>you make the world feel softer.</li>
+            <li>i trust your heart.</li>
+            <li>you make me feel safe to be myself.</li>
+            
+            <li>i love how much you mean to me.</li>
+            <li>you make life feel less heavy.</li>
+            <li>i love how thoughtful your words are.</li>
+            <li>you’re my favorite place.</li>
+            <li>i admire your kindness.</li>
+            <li>you make me feel secure.</li>
+            <li>i love choosing you every day.</li>
+            <li>you make my heart feel calm.</li>
+            <li>i love how real you are.</li>
+            <li>you make loving easy.</li>
+            
+            <li>i love how much you care.</li>
+            <li>you make me feel cherished.</li>
+            <li>i’m grateful you’re mine.</li>
+            <li>you make distance worth enduring.</li>
+            <li>i love the way you support me.</li>
+            <li>you’re my favorite future.</li>
+            <li>i trust the love we’re building.</li>
+            <li>you make me feel grounded and excited at the same time.</li>
+            <li>i love how safe loving you feels.</li>
+            <li>you’re my always, even now.</li>
+        </ol>
+      </section>
+    </main>
+
+    <nav aria-label="bottom navigation">
+      <ul>
+        <li>
+          <a href="index.html">
+            <img src="assets/nav-home.png" alt="home icon" />
+            <span>home</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="daily-note.html" aria-current="page">
+            <img src="assets/nav-note.png" alt="daily note icon" />
+            <span>daily note</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="stargaze.html">
+            <img src="assets/nav-stars.png" alt="stargazing icon" />
+            <span>stargazing</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="reasons.html">
+            <img src="assets/nav-reasons.png" alt="reasons icon" />
+            <span>reasons</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer>
+      <p><small>issued feb 14 · valid for a lifetime</small></p>
+    </footer>
+  </body>
+</html>

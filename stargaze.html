@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://virtualsky.lco.global/embed.js"></script>
+    <script src="js/stargaze.js"></script>
+    <title>stargazing · our journey</title>
+  </head>
 
+  <body>
+    <header class="topbar">
+      <div>
+        <p><a class="site-title" href="index.html"><strong>our journey</strong></a></p>
+      </div>
+
+      <nav aria-label="top navigation">
+        <ul>
+          <li><a href="daily-note.html">daily note</a></li>
+          <li><a href="stargaze.html" aria-current="page">stargazing</a></li>
+          <li><a href="reasons.html">reasons</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h1>stargazing</h1>
+
+      <p>
+        a page for the sky we share, even when we’re far apart.
+      </p>
+
+      <h2>the sky</h2>
+
+      <section aria-label="sky viewer">
+        <div id="sky-viewer" aria-label="virtual sky viewer">
+          <iframe 
+            id="sky-now"
+            width="2000" 
+            height="500" 
+            frameborder="0" 
+            scrolling="no" 
+            marginheight="0" 
+            marginwidth="0" 
+            src="https://virtualsky.lco.global/embed/index.html?longitude=-119.86286000000001&latitude=34.4326&projection=equirectangular&cardinalpoints=false&scalestars=1.5&showposition=false&color=rgba(255,255,255)&magnitude=100" 
+            allowTransparency="true">
+          </iframe>
+
+          <iframe 
+            id="sky-past"
+            hidden
+            width="2000" 
+            height="500" 
+            frameborder="0" 
+            scrolling="no" 
+            marginheight="0" 
+            marginwidth="0" 
+            src="https://virtualsky.lco.global/embed/index.html?longitude=-119.86286000000001&latitude=34.4326&projection=equirectangular&cardinalpoints=false&scalestars=1.5&showposition=false&color=rgba(255,255,255)&magnitude=100&az=172.25&clock=Thu%20Jul%2006%202023%2013:12:00%20GMT-0400%20(Eastern%20Daylight%20Time)" 
+            allowTransparency="true">
+          </iframe>
+        </div>
+      </section>
+
+      <section aria-label="moments">
+        <h2>moments</h2>
+        <button type="button" data-sky="now">right now</button>
+        <button type="button" data-sky="past">the night we met</button>
+      </section>
+
+
+      <section aria-label="wish corner">
+        <h2>wish corner</h2>
+        <p>
+          write a wish here (later we can save it locally).
+        </p>
+
+        <form>
+          <label for="wish">wish</label>
+          <br />
+          <textarea id="wish" name="wish" rows="4" cols="40" placeholder="type something soft here..."></textarea>
+          <br />
+          <button type="submit">save wish</button>
+        </form>
+      </section>
+    </main>
+
+    <nav aria-label="bottom navigation">
+      <ul>
+        <li>
+          <a href="index.html">
+            <img src="assets/nav-home.png" alt="home icon" />
+            <span>home</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="daily-note.html">
+            <img src="assets/nav-note.png" alt="daily note icon" />
+            <span>daily note</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="stargaze.html" aria-current="page">
+            <img src="assets/nav-stars.png" alt="stargazing icon" />
+            <span>stargazing</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="reasons.html">
+            <img src="assets/nav-reasons.png" alt="reasons icon" />
+            <span>reasons</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer>
+      <p><small>issued feb 14 · valid for a lifetime</small></p>
+    </footer>
+  </body>
+</html>
