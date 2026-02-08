@@ -10,17 +10,17 @@
   </head>
 
   <body>
-    <a href="#main">skip to content</a>
-
+  
     <header class="topbar">
-      <div><strong>our journey</strong></div>
+      <div>
+        <p><a class="site-title" href="index.html"><strong>our journey</strong></a></p>
+      </div>
 
       <nav aria-label="top navigation">
         <ul>
-          <li><a href="index.html">home</a></li>
           <li><a href="daily-note.html">daily note</a></li>
           <li><a href="stargaze.html">stargazing</a></li>
-          <li><a href="archive.html" aria-current="page">archive</a></li>
+          <li><a href="archive.html" aria-current="page">message archive</a></li>
         </ul>
       </nav>
     </header>
@@ -28,21 +28,14 @@
     <main class="page" id="main">
       <h1>our archive</h1>
       <p class="muted">
-        loading our messages automatically. if it takes a bit, that’s normal.
+        loading our messages automatically. if it takes a second, that’s okay.
       </p>
 
-      <section class="panel" aria-label="status">
+      <button id="toggleStatus" type="button" aria-expanded="false">show status</button>
+
+      <section class="panel is-hidden" aria-label="status" id="statusPanel">
         <h2>status</h2>
         <p id="loadStatus" class="muted">starting…</p>
-
-        <details>
-          <summary>troubleshooting</summary>
-          <ul>
-            <li>make sure the file exists at <code>data/messages.txt</code></li>
-            <li>make sure each line matches the format exactly</li>
-            <li>15mb is fine, but first load can be slow on weak wifi</li>
-          </ul>
-        </details>
 
         <div class="row" style="margin-top:12px;">
           <button id="reloadFromSite" type="button">reload from site</button>
@@ -93,13 +86,20 @@
       <section class="panel" aria-label="results">
         <h2>messages</h2>
 
-        <div class="pager">
-          <button id="prev" type="button">prev</button>
-          <span id="pageMeta" class="muted"></span>
-          <button id="next" type="button">next</button>
+        <div class="pager" data-pager="top">
+          <button type="button" data-page="prev">prev</button>
+          <span class="page-meta muted"></span>
+          <button type="button" data-page="next">next</button>
         </div>
 
         <ol id="results" class="results"></ol>
+
+        <div class="pager" data-pager="bottom">
+          <button type="button" data-page="prev">prev</button>
+          <span class="page-meta muted"></span>
+          <button type="button" data-page="next">next</button>
+        </div>
+
       </section>
     </main>
 
@@ -107,26 +107,20 @@
       <ul>
         <li>
           <a href="index.html">
-            <img src="assets/nav-home.png" alt="home icon" />
+            <img src="assets/default.png" alt="home icon" />
             <span>home</span>
           </a>
         </li>
         <li>
           <a href="daily-note.html">
-            <img src="assets/nav-note.png" alt="daily note icon" />
+            <img src="assets/default.png" alt="daily note icon" />
             <span>daily note</span>
           </a>
         </li>
         <li>
           <a href="stargaze.html">
-            <img src="assets/nav-stars.png" alt="stargazing icon" />
+            <img src="assets/default.png" alt="stargazing icon" />
             <span>stargazing</span>
-          </a>
-        </li>
-        <li>
-          <a href="archive.html" aria-current="page">
-            <img src="assets/nav-archive.png" alt="archive icon" />
-            <span>archive</span>
           </a>
         </li>
       </ul>
@@ -134,4 +128,7 @@
 
     <script src="js/archive.js"></script>
   </body>
+  <footer>
+    <p><small>issued feb 14 · valid for a lifetime</small></p>
+  </footer>
 </html>

@@ -22,7 +22,6 @@ body {
     align-items: center;
   }
   
-header nav ul,
 nav ul {
   list-style: none;
   padding: 0;
@@ -74,13 +73,6 @@ nav a {
     opacity: 0.25;
   }
   
-  /* text sits above the map */
-section[aria-label="countdown"] section {
-  position: relative;
-  margin-top: -300px;
-  padding: 16px;
-}
-
 /* hide daily note list while keeping it in the DOM for JS */
 section[aria-label="note list"] {
   display: none;
@@ -134,9 +126,56 @@ nav[aria-label="bottom navigation"] ul {
     margin-top: 48px;
   }
   
-  footer img {
-    max-width: 200px;
-    display: block;
-    margin: 0 auto 12px;
+  .wish-corner{
+    margin: 28px 0;
+  }
+  
+  .wish-form{
+    max-width: 720px;
+    margin: 14px 0 0;
+    padding: 16px;
+    border-radius: 18px;
+    border: 1px dashed rgba(0,0,0,.22);
+    background: rgba(251,243,229,.85);
+    box-shadow: 0 14px 34px rgba(0,0,0,.14);
+    display: grid;
+    gap: 10px;
+  }
+  
+  .wish-form label{
+    font-size: 14px;
+    opacity: .9;
+  }
+  
+  .wish-form textarea,
+  .wish-form input{
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,.18);
+    background: rgba(255,255,255,.65);
+    font: inherit;
+  }
+  
+  .wish-form textarea{
+    resize: vertical;
+  }
+  
+  .wish-form .row{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .wish-form button{
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,.18);
+    background: rgba(255,255,255,.65);
+    cursor: pointer;
+  }
+  
+  .wish-form button:hover{
+    background: rgba(255,255,255,.82);
   }
   

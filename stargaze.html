@@ -26,13 +26,6 @@
 
     <main id="main">
       <h1>stargazing</h1>
-
-      <p>
-        a page for the sky we share, even when we’re far apart.
-      </p>
-
-      <h2>the sky</h2>
-
       <section aria-label="sky viewer">
         <div id="sky-viewer" aria-label="virtual sky viewer">
           <iframe 
@@ -69,48 +62,57 @@
       </section>
 
 
-      <section aria-label="wish corner">
+      <section class="wish-corner" aria-label="wish corner">
         <h2>wish corner</h2>
-        <p>
-          write a wish here (later we can save it locally).
-        </p>
-
-        <form>
-          <label for="wish">wish</label>
-          <br />
-          <textarea id="wish" name="wish" rows="4" cols="40" placeholder="type something soft here..."></textarea>
-          <br />
-          <button type="submit">save wish</button>
+      
+        <form
+          class="wish-form"
+          action="https://formspree.io/f/xjgevjnk"
+          method="POST"
+        >
+          <!-- optional: lets you know which page it came from -->
+          <input type="hidden" name="source" value="our journey · wish corner" />
+      
+          <label for="wishText">your wish</label>
+          <textarea
+            id="wishText"
+            name="wish"
+            rows="5"
+            placeholder="type anything…"
+            required
+          ></textarea>
+      
+          <div class="row">
+            <button type="submit">send wish</button>
+          </div>
+      
+          <p id="wishStatus" class="muted" aria-live="polite"></p>
         </form>
       </section>
+      
+      <script src="js/wish.js"></script>
+      
     </main>
 
     <nav aria-label="bottom navigation">
       <ul>
         <li>
           <a href="index.html">
-            <img src="assets/nav-home.png" alt="home icon" />
+            <img src="assets/default.png" alt="home icon" />
             <span>home</span>
           </a>
         </li>
 
         <li>
           <a href="daily-note.html">
-            <img src="assets/nav-note.png" alt="daily note icon" />
+            <img src="assets/default.png" alt="daily note icon" />
             <span>daily note</span>
           </a>
         </li>
 
         <li>
-          <a href="stargaze.html" aria-current="page">
-            <img src="assets/nav-stars.png" alt="stargazing icon" />
-            <span>stargazing</span>
-          </a>
-        </li>
-
-        <li>
           <a href="archive.html">
-            <img src="assets/nav-message archive.png" alt="message archive icon" />
+            <img src="assets/default.png" alt="message archive icon" />
             <span>message archive</span>
           </a>
         </li>

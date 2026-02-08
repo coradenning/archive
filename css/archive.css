@@ -9,6 +9,10 @@
   margin: 16px 0;
 }
 
+.panel.is-hidden{
+  display: none;
+}
+
 .grid{
   display: grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
@@ -45,7 +49,9 @@ button{
 button:hover{ background: rgba(255,255,255,.75); }
 
 .results{
-  padding-left: 18px;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
   display: grid;
   gap: 10px;
 }

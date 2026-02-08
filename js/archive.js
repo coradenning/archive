@@ -15,78 +15,33 @@
   
       resultMeta: document.getElementById("resultMeta"),
       results: document.getElementById("results"),
-  
-      prev: document.getElementById("prev"),
-      next: document.getElementById("next"),
-      pageMeta: document.getElementById("pageMeta"),
+
+      statusPanel: document.getElementById("statusPanel"),
+      toggleStatus: document.getElementById("toggleStatus"),
+
+      prevButtons: Array.from(document.querySelectorAll('button[data-page="prev"]')),
+      nextButtons: Array.from(document.querySelectorAll('button[data-page="next"]')),
+      pageMetas: Array.from(document.querySelectorAll(".page-meta")),
     };
   
-    // where your uploaded chat file lives in the repo
-    const ARCHIVE_URL = "data/messages.txt";
-  
-    // cache key so it doesn’t re-download every time
-    const CACHE_KEY = "ourJourney_archive_v2";
+    // robust path for github pages (root or /repo-name/)
+    const ARCHIVE_URL = new URL("./data/messages.txt", window.location.href).toString();
   
     let all = [];
     let filtered = [];
     let page = 1;
-    const PAGE_SIZE = 60;
+    const PAGE_SIZE = 50;
   
-    // format:
-    // 2024/02/10 22:15 | Sender Name: message text | reaction (optional)
+    // strict “new message starts here” detector
+    const startRe = /^\d{4}\/\d{2}\/\d{2}\s+\d{2}:\d{2}\s+\|\s+[^:]+:\s*/;
+  
+    // full record parser (reaction optional)
+    // 2024/02/10 22:15 | Sender: message text | reaction
     const lineRe =
-      /^(\d{4})\/(\d{2})\/(\d{2})\s+(\d{2}):(\d{2})\s+\|\s+([^:]+):\s*(.*?)\s*(?:\|\s*(.*))?$/;
+      /^(\d{4})\/(\d{2})\/(\d{2})\s+(\d{2}):(\d{2})\s+\|\s+([^:]+):\s*([\s\S]*?)(?:\s+\|\s*(.*))?$/;
   
     function setStatus(msg) {
       if (els.loadStatus) els.loadStatus.textContent = msg;
-    }
-  
-    function parseLine(line) {
-      const m = line.match(lineRe);
-      if (!m) return null;
-  
-      const [_, y, mo, d, hh, mm, sender, message, reaction] = m;
-      const iso = `${y}-${mo}-${d}T${hh}:${mm}:00`;
-      const date = new Date(iso);
-  
-      return {
-        date: date.toISOString(), // store as string for cache safety
-        dayKey: `${y}-${mo}-${d}`,
-        time: `${hh}:${mm}`,
-        sender: sender.trim(),
-        message: message.trim(),
-        reaction: (reaction || "").trim(),
-        raw: line,
-      };
-    }
-  
-    function parseText(text) {
-      const lines = text.split(/\r?\n/);
-      const out = [];
-      for (const rawLine of lines) {
-        const line = rawLine.trim();
-        if (!line) continue;
-        const item = parseLine(line);
-        if (item) out.push(item);
-      }
-  
-      // sort by time
-      out.sort((a, b) => new Date(a.date) - new Date(b.date));
-      return out;
-    }
-  
-    function saveCache(items) {
-      localStorage.setItem(CACHE_KEY, JSON.stringify(items));
-    }
-  
-    function loadCache() {
-      const raw = localStorage.getItem(CACHE_KEY);
-      if (!raw) return null;
-      try {
-        return JSON.parse(raw);
-      } catch {
-        return null;
-      }
     }
   
     function escapeHtml(s) {
@@ -107,6 +62,71 @@
       return safe.replace(re, m => `<mark>${m}</mark>`);
     }
   
+    // ---- key change: stitch multiline messages into single records ----
+    function coalesceRecords(text) {
+      const lines = text.split(/\r?\n/);
+      const records = [];
+      let buf = "";
+  
+      for (const raw of lines) {
+        // preserve empty lines INSIDE a message, but ignore leading empties
+        const line = raw.replace(/\r/g, "");
+  
+        if (startRe.test(line.trim())) {
+          if (buf.trim()) records.push(buf);
+          buf = line.trim();
+        } else {
+          // continuation of previous message: keep the newline
+          if (!buf) {
+            // stray lines before the first timestamp, ignore
+            continue;
+          }
+          buf += "\n" + line;
+        }
+      }
+  
+      if (buf.trim()) records.push(buf);
+      return records;
+    }
+  
+    function parseRecord(recordText) {
+      const m = recordText.match(lineRe);
+      if (!m) return null;
+  
+      const [_, y, mo, d, hh, mm, sender, messageRaw, reactionRaw] = m;
+  
+      // messageRaw may include internal newlines; keep them
+      const message = (messageRaw || "").trimEnd();
+      const reaction = (reactionRaw || "").trim();
+  
+      // interpret as local time; if you need exact timezone handling, we can add it
+      const iso = `${y}-${mo}-${d}T${hh}:${mm}:00`;
+      const date = new Date(iso);
+  
+      return {
+        date,
+        dayKey: `${y}-${mo}-${d}`,
+        time: `${hh}:${mm}`,
+        sender: sender.trim(),
+        message,
+        reaction,
+        raw: recordText,
+      };
+    }
+  
+    function parseText(text) {
+      const records = coalesceRecords(text);
+      const out = [];
+  
+      for (const rec of records) {
+        const item = parseRecord(rec);
+        if (item) out.push(item);
+      }
+  
+      out.sort((a, b) => a.date - b.date);
+      return out;
+    }
+  
     function fillSenderOptions(items) {
       const names = Array.from(new Set(items.map(x => x.sender)))
         .sort((a, b) => a.localeCompare(b));
@@ -124,11 +144,9 @@
       const end = els.endDate.value ? new Date(els.endDate.value + "T23:59:59") : null;
   
       filtered = all.filter(item => {
-        const dt = new Date(item.date);
-  
         if (sender && item.sender !== sender) return false;
-        if (start && dt < start) return false;
-        if (end && dt > end) return false;
+        if (start && item.date < start) return false;
+        if (end && item.date > end) return false;
   
         if (q) {
           const hay = (item.message + " " + item.sender + " " + item.reaction).toLowerCase();
@@ -139,7 +157,7 @@
   
       if (jump && els.jumpDate.value) {
         const jumpStart = new Date(els.jumpDate.value + "T00:00:00");
-        const idx = filtered.findIndex(x => new Date(x.date) >= jumpStart);
+        const idx = filtered.findIndex(x => x.date >= jumpStart);
         page = idx === -1 ? 1 : Math.floor(idx / PAGE_SIZE) + 1;
       } else {
         page = 1;
@@ -158,9 +176,7 @@
       const q = els.q.value.trim();
   
       els.results.innerHTML = slice.map(item => {
-        const dt = new Date(item.date);
         const dateStr = `${escapeHtml(item.dayKey)} ${escapeHtml(item.time)}`;
-  
         const senderBadge = `<span class="badge">${escapeHtml(item.sender)}</span>`;
         const msg = highlight(item.message, q);
         const reaction = item.reaction
@@ -180,62 +196,68 @@
       }).join("");
   
       els.resultMeta.textContent = `${total.toLocaleString()} messages matched`;
-      els.pageMeta.textContent = `page ${page} / ${totalPages}`;
-      els.prev.disabled = page <= 1;
-      els.next.disabled = page >= totalPages;
+      els.pageMetas.forEach(el => {
+        el.textContent = `page ${page} / ${totalPages}`;
+      });
+      els.prevButtons.forEach(btn => {
+        btn.disabled = page <= 1;
+      });
+      els.nextButtons.forEach(btn => {
+        btn.disabled = page >= totalPages;
+      });
     }
   
-    function loadItems(items, { cache = true } = {}) {
+    function loadItems(items) {
       all = items;
       filtered = items;
       fillSenderOptions(all);
-      if (cache) saveCache(all);
       render();
     }
   
     async function loadFromSite({ bypassCache = false } = {}) {
-      setStatus("loading archive from site…");
+      setStatus("downloading archive…");
   
       const url = bypassCache ? `${ARCHIVE_URL}?v=${Date.now()}` : ARCHIVE_URL;
       const res = await fetch(url, { cache: "no-store" });
   
       if (!res.ok) {
-        setStatus(`couldn't load ${ARCHIVE_URL} (http ${res.status}).`);
+        setStatus(`couldn't load archive (http ${res.status}).`);
         return;
       }
   
-      // show download progress-ish
       const text = await res.text();
       setStatus("parsing messages…");
   
       const items = parseText(text);
+  
       if (items.length === 0) {
-        setStatus("loaded the file, but couldn't parse any lines. check the format.");
+        setStatus("loaded the file, but couldn't parse any messages. format mismatch.");
         return;
       }
   
-      loadItems(items, { cache: true });
+      loadItems(items);
       setStatus(`loaded ${items.length.toLocaleString()} messages`);
     }
   
     function init() {
-      const cached = loadCache();
-      if (cached && cached.length) {
-        loadItems(cached, { cache: false });
-        setStatus(`loaded ${cached.length.toLocaleString()} messages (saved on this device)`);
-      } else {
-        // auto-load on first visit
-        loadFromSite().catch(() => setStatus("failed to load archive from site."));
-      }
+      loadFromSite().catch(err => {
+        console.error(err);
+        setStatus("failed to load archive from site.");
+      });
   
       els.reloadFromSite?.addEventListener("click", () => {
-        loadFromSite({ bypassCache: true }).catch(() => setStatus("failed to load archive from site."));
+        loadFromSite({ bypassCache: true }).catch(err => {
+          console.error(err);
+          setStatus("failed to load archive from site.");
+        });
       });
   
       els.clearCache?.addEventListener("click", () => {
-        localStorage.removeItem(CACHE_KEY);
-        setStatus("cleared saved cache. reloading from site…");
-        loadFromSite({ bypassCache: true }).catch(() => setStatus("failed to load archive from site."));
+        setStatus("reloading fresh…");
+        loadFromSite({ bypassCache: true }).catch(err => {
+          console.error(err);
+          setStatus("failed to load archive from site.");
+        });
       });
   
       els.apply?.addEventListener("click", () => applyFilters());
@@ -251,16 +273,28 @@
       });
   
       els.jumpDate?.addEventListener("change", () => applyFilters({ jump: true }));
-  
-      els.prev?.addEventListener("click", () => {
-        page = Math.max(1, page - 1);
-        render();
+
+      if (els.toggleStatus && els.statusPanel) {
+        els.toggleStatus.addEventListener("click", () => {
+          const isHidden = els.statusPanel.classList.toggle("is-hidden");
+          els.toggleStatus.textContent = isHidden ? "show status" : "hide status";
+          els.toggleStatus.setAttribute("aria-expanded", String(!isHidden));
+        });
+      }
+
+      els.prevButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          page = Math.max(1, page - 1);
+          render();
+        });
       });
-  
-      els.next?.addEventListener("click", () => {
-        const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-        page = Math.min(totalPages, page + 1);
-        render();
+
+      els.nextButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+          page = Math.min(totalPages, page + 1);
+          render();
+        });
       });
     }
   

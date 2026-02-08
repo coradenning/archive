@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/countdown.js" defer></script>
     <title>our journey</title>
   </head>
 
@@ -27,110 +28,45 @@
     <main id="main">
       <section aria-label="hero">
         <h1>our journey</h1>
-
-        <p>
-          <em>counting down to the moment distance stops getting a vote.</em>
-        </p>
-      </section>
-
-      <section aria-label="boarding pass">
-        <h2>boarding pass</h2>
-
-        <dl>
-          <dt>passengers</dt>
-          <dd>cora + arina</dd>
-
-          <dt>from</dt>
-          <dd>upland, indiana</dd>
-
-          <dt>to</dt>
-          <dd>(her city)</dd>
-
-          <dt>status</dt>
-          <dd>boarding soon</dd>
-
-          <dt>issued</dt>
-          <dd>(date)</dd>
-        </dl>
-
-        <p>
-          <small>
-            <strong>note:</strong> non-transferable. non-refundable. non-negotiable.
-          </small>
-        </p>
       </section>
 
       <section aria-label="countdown">
         <h2>time until we meet</h2>
-
-        <figure aria-label="map background">
-          <img
-            src="assets/map-bg.png"
-            alt="a world map showing our two hometowns with a line between them"
-          />
-          <figcaption>two places. one direction.</figcaption>
-        </figure>
-
         <section aria-label="countdown display">
-          <h3>countdown</h3>
-
-          <p>
-            <strong>meet time:</strong>
-            <time datetime="2026-02-14T20:00:00-05:00">(set exact time later)</time>
-          </p>
-
-          <p>
-            <strong>time remaining:</strong>
-            <span id="countdown-text">(countdown will appear here later)</span>
-          </p>
-
-          <p>
-            <small>
-              status: <span>(ticking)</span>
-              · gate: <span>fate</span>
-              · terminal: <span>finally</span>
-            </small>
-          </p>
+            <time id="meet-time" datetime="2026-07-06T08:25:00+05:00"></time>
+            <span id="countdown-text"></span>
         </section>
-      </section>
-
-      <section aria-label="what's inside">
-        <h2>inside this site</h2>
-        <ul>
-          <li>a daily note until we meet</li>
-          <li>a sky page for shared stargazing</li>
-          <li>1000 message archive (randomized later)</li>
-        </ul>
       </section>
     </main>
 
     <nav aria-label="bottom navigation">
       <ul>
-        <li>
-          <a href="index.html" aria-current="page">
-            <img src="assets/nav-home.png" alt="home icon" />
-            <span>home</span>
-          </a>
-        </li>
 
         <li>
           <a href="daily-note.html">
-            <img src="assets/nav-note.png" alt="daily note icon" />
+            <img src="assets/default.png" alt="daily note icon" />
             <span>daily note</span>
           </a>
         </li>
 
         <li>
           <a href="stargaze.html">
-            <img src="assets/nav-note.png" alt="stargaze icon" />
+            <img src="assets/default.png" alt="stargaze icon" />
             <span>stargazing</span>
           </a>
         </li>
 
         <li>
           <a href="archive.html">
-            <img src="assets/nav-note.png" alt="message archive note icon" />
+            <img src="assets/default.png" alt="message archive note icon" />
             <span>message archive</span>
           </a>
         </li>
       </ul>
+    </nav>
+
+    <footer>
+      <p><small>issued feb 14 · valid for a lifetime</small></p>
+    </footer>
+  </body>
+</html>
