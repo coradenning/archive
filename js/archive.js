@@ -128,12 +128,21 @@
     }
   
     function fillSenderOptions(items) {
+      const labelMap = new Map([
+        ["cora denning", "cora"],
+        ["rovelz_eee", "arina"],
+      ]);
+
       const names = Array.from(new Set(items.map(x => x.sender)))
+        .filter(name => name.toLowerCase() !== "meta ai")
         .sort((a, b) => a.localeCompare(b));
-  
+
       els.sender.innerHTML =
         `<option value="">any</option>` +
-        names.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
+        names.map(n => {
+          const label = labelMap.get(n.toLowerCase()) || n;
+          return `<option value="${escapeHtml(n)}">${escapeHtml(label)}</option>`;
+        }).join("");
     }
   
     function applyFilters({ jump = false } = {}) {
