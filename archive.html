@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>our archive · our journey</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/archive.css" />
+  </head>
+
+  <body>
+    <a href="#main">skip to content</a>
+
+    <header class="topbar">
+      <div><strong>our journey</strong></div>
+
+      <nav aria-label="top navigation">
+        <ul>
+          <li><a href="index.html">home</a></li>
+          <li><a href="daily-note.html">daily note</a></li>
+          <li><a href="stargaze.html">stargazing</a></li>
+          <li><a href="archive.html" aria-current="page">archive</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="page" id="main">
+      <h1>our archive</h1>
+      <p class="muted">
+        loading our messages automatically. if it takes a bit, that’s normal.
+      </p>
+
+      <section class="panel" aria-label="status">
+        <h2>status</h2>
+        <p id="loadStatus" class="muted">starting…</p>
+
+        <details>
+          <summary>troubleshooting</summary>
+          <ul>
+            <li>make sure the file exists at <code>data/messages.txt</code></li>
+            <li>make sure each line matches the format exactly</li>
+            <li>15mb is fine, but first load can be slow on weak wifi</li>
+          </ul>
+        </details>
+
+        <div class="row" style="margin-top:12px;">
+          <button id="reloadFromSite" type="button">reload from site</button>
+          <button id="clearCache" type="button">clear saved cache</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="search">
+        <h2>search</h2>
+
+        <div class="grid">
+          <label>
+            keyword
+            <input id="q" type="search" placeholder="type a word or phrase..." />
+          </label>
+
+          <label>
+            sender
+            <select id="sender">
+              <option value="">any</option>
+            </select>
+          </label>
+
+          <label>
+            start date
+            <input id="startDate" type="date" />
+          </label>
+
+          <label>
+            end date
+            <input id="endDate" type="date" />
+          </label>
+
+          <label>
+            jump to date
+            <input id="jumpDate" type="date" />
+          </label>
+
+          <div class="row">
+            <button id="apply" type="button">apply</button>
+            <button id="reset" type="button">reset</button>
+          </div>
+        </div>
+
+        <p class="muted" id="resultMeta"></p>
+      </section>
+
+      <section class="panel" aria-label="results">
+        <h2>messages</h2>
+
+        <div class="pager">
+          <button id="prev" type="button">prev</button>
+          <span id="pageMeta" class="muted"></span>
+          <button id="next" type="button">next</button>
+        </div>
+
+        <ol id="results" class="results"></ol>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="bottom navigation">
+      <ul>
+        <li>
+          <a href="index.html">
+            <img src="assets/nav-home.png" alt="home icon" />
+            <span>home</span>
+          </a>
+        </li>
+        <li>
+          <a href="daily-note.html">
+            <img src="assets/nav-note.png" alt="daily note icon" />
+            <span>daily note</span>
+          </a>
+        </li>
+        <li>
+          <a href="stargaze.html">
+            <img src="assets/nav-stars.png" alt="stargazing icon" />
+            <span>stargazing</span>
+          </a>
+        </li>
+        <li>
+          <a href="archive.html" aria-current="page">
+            <img src="assets/nav-archive.png" alt="archive icon" />
+            <span>archive</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <script src="js/archive.js"></script>
+  </body>
+</html>

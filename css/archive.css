@@ -1,0 +1,104 @@
+.muted { color: rgba(0,0,0,.6); }
+
+.panel{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(255,255,255,.35);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  margin: 16px 0;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.grid label{
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.grid input, .grid select{
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.18);
+  background: rgba(255,255,255,.6);
+}
+
+.row{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+button{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.18);
+  background: rgba(255,255,255,.55);
+  cursor: pointer;
+}
+button:hover{ background: rgba(255,255,255,.75); }
+
+.results{
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.msg{
+  border: 1px dashed rgba(0,0,0,.2);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(251,243,229,.85);
+}
+
+.msg-top{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  opacity: .9;
+}
+
+.badge{
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.15);
+  background: rgba(201,164,107,.18);
+}
+
+.text{
+  margin-top: 8px;
+  font-size: 15px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.reaction{
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: .75;
+}
+
+mark{
+  background: rgba(201,164,107,.45);
+  padding: 0 2px;
+  border-radius: 4px;
+}
+
+.pager{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px){
+  .grid{ grid-template-columns: 1fr; }
+}
