@@ -5,68 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css">
     <script src="js/countdown.js" defer></script>
+    <script src="js/nav.js" defer></script>
     <title>our journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+4:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
+
   </head>
 
-  <body>
-    <header class="topbar">
-      <div>
-        <p>
-          <a class="site-title" href="index.html"><strong>our journey</strong></a>
-        </p>
-      </div>
+  <body class="passport-home">
+    <header class="passport-topbar">
+      <a class="passport-brand" href="index.html" aria-label="passport to us home">
+        <img src="assets/default.png" alt="" aria-hidden="true" />
+        <div>
+          <p class="passport-eyebrow">passport</p>
+          <p class="passport-script">to us</p>
+          <span class="passport-tagline">valid for a lifetime</span>
+        </div>
+      </a>
 
-      <nav aria-label="top navigation">
-        <ul>
-          <li><a href="daily-note.html">daily note</a></li>
-          <li><a href="stargaze.html">stargazing</a></li>
-          <li><a href="archive.html">message archive</a></li>
-        </ul>
+      <nav aria-label="top navigation" class="passport-nav top-nav" id="site-nav">
+        <a class="stamp" href="archive.html">message archive</a>
+        <a class="stamp" href="stargaze.html">stargaze</a>
+        <a class="stamp" href="daily-note.html">daily note</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <div class="passport-meta">
+        <span>issued feb 14</span>
+        <span>valid for a lifetime</span>
+      </div>
     </header>
 
-    <main id="main">
-      <section aria-label="hero">
-        <h1>our journey</h1>
+    <main id="main" class="passport-page page-stamp-area">
+      <section class="passport-layout" aria-label="passport layout">
+        <div class="stamp-overlay stamp-hero stamp-upland" aria-hidden="true"></div>
+        <article class="passport-card">
+          <h1>our <span>journey</span></h1>
+          <p class="passport-note">valid for a lifetime</p>
+          <dl class="passport-details">
+            <div>
+              <dt>name</dt>
+              <dd>cora + arina</dd>
+            </div>
+            <div>
+              <dt>nationality</dt>
+              <dd>hopeless romantics</dd>
+            </div>
+            <div>
+              <dt>purpose of travel</dt>
+              <dd>finally meeting</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="map-card" aria-label="map and countdown">
+          <div class="map-bg" aria-hidden="true"></div>
+          <div class="boarding-pass" aria-label="boarding pass">
+            <div class="ticket-stub">
+              <span>boarding pass</span>
+              <div class="barcode" aria-hidden="true"></div>
+            </div>
+            <div class="ticket-main">
+              <p class="countdown-title">next arrival</p>
+              <div class="countdown-route">cora → arina</div>
+              <div class="countdown-time">
+                <span id="countdown-text">loading…</span>
+              </div>
+              <div class="countdown-meta">
+                <div>status: boarding soon</div>
+                <div>gate: fate</div>
+                <div>terminal: finally</div>
+              </div>
+            </div>
+          </div>
+          <time id="meet-time" datetime="2026-07-06T08:25:00+05:00"></time>
+        </article>
       </section>
 
-      <section aria-label="countdown">
-        <h2>time until we meet</h2>
-        <section aria-label="countdown display">
-            <time id="meet-time" datetime="2026-07-06T08:25:00+05:00"></time>
-            <span id="countdown-text"></span>
-        </section>
+      <div class="divider-script" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-content">
+          <img src="assets/icons/heart.svg" alt="" aria-hidden="true" />
+          don’t forget this <span class="divider-script-word">feeling</span>
+          <img src="assets/icons/heart.svg" alt="" aria-hidden="true" />
+        </span>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="divider-airmail" aria-hidden="true"></div>
+
+      <section class="passport-tiles" aria-label="quick links">
+        <div class="stamp-overlay stamp-tiles stamp-postage" aria-hidden="true"></div>
+        <a class="tile" href="archive.html">
+          <img class="tile-icon" src="assets/icons/list.svg" alt="" aria-hidden="true" />
+          <p class="tile-title">message archive</p>
+          <p class="tile-sub">pull one. save it forever.</p>
+        </a>
+        <a class="tile" href="stargaze.html">
+          <img class="tile-icon" src="assets/icons/telescope.svg" alt="" aria-hidden="true" />
+          <p class="tile-title">stargazing</p>
+          <p class="tile-sub">same sky, different ground.</p>
+        </a>
+        <a class="tile" href="daily-note.html">
+          <img class="tile-icon" src="assets/icons/envelope.svg" alt="" aria-hidden="true" />
+          <p class="tile-title">daily note</p>
+          <p class="tile-sub">open carefully.</p>
+        </a>
       </section>
     </main>
-
-    <nav aria-label="bottom navigation">
-      <ul>
-
-        <li>
-          <a href="daily-note.html">
-            <img src="assets/default.png" alt="daily note icon" />
-            <span>daily note</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="stargaze.html">
-            <img src="assets/default.png" alt="stargaze icon" />
-            <span>stargazing</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="archive.html">
-            <img src="assets/default.png" alt="message archive note icon" />
-            <span>message archive</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <footer>
-      <p><small>issued feb 14 · valid for a lifetime</small></p>
-    </footer>
   </body>
 </html>

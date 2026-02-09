@@ -5,44 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css">
     <script src="js/daily-note.js" defer></script>
+    <script src="js/nav.js" defer></script>
     <title>daily note · our journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+4:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
+
   </head>
 
   <body>
-    <header class="topbar">
-      <div>
-        <p><a class="site-title" href="index.html"><strong>our journey</strong></a></p>
-      </div>
+    <header class="passport-topbar">
+      <a class="passport-brand" href="index.html" aria-label="passport to us home">
+        <img src="assets/default.png" alt="" aria-hidden="true" />
+        <div>
+          <p class="passport-eyebrow">passport</p>
+          <p class="passport-script">to us</p>
+          <span class="passport-tagline">valid for a lifetime</span>
+        </div>
+      </a>
 
-      <nav aria-label="top navigation">
-        <ul>
-          <li><a href="daily-note.html" aria-current="page">daily note</a></li>
-          <li><a href="stargaze.html">stargazing</a></li>
-          <li><a href="archive.html">message archive</a></li>
-        </ul>
+      <nav aria-label="top navigation" class="passport-nav top-nav" id="site-nav">
+        <a class="stamp" href="archive.html">message archive</a>
+        <a class="stamp" href="stargaze.html">stargaze</a>
+        <a class="stamp" href="daily-note.html" aria-current="page">daily note</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <div class="passport-meta">
+        <span>issued feb 14</span>
+        <span>valid for a lifetime</span>
+      </div>
     </header>
 
-    <main id="main">
+    <main id="main" class="daily-note-page page-stamp-area">
+      <div class="stamp-overlay stamp-note-1 stamp-butterfly" aria-hidden="true"></div>
+      <div class="stamp-overlay stamp-note-2 stamp-eu" aria-hidden="true"></div>
       <h1>daily note</h1>
 
       <p>
         one small note, every day, until we meet.
       </p>
 
-      <section aria-label="today's note">
-        <p>
+      <section class="postcard" aria-label="today's note">
+        <div class="postcard-stamp">place<br />stamp</div>
+        <div class="postcard-lines" aria-hidden="true"></div>
+
+        <p class="note-meta">
           <time datetime="2026-02-07">(date will auto-fill later)</time>
         </p>
 
-        <article aria-label="note card">
+        <article aria-label="note card" class="note-paper">
           <h3>note</h3>
-          <p id="daily-note-line">
+          <p id="daily-note-line" class="note-line">
             <span id="daily-note-date"></span>
             <span id="daily-note-text"></span>
           </p>
         </article>
       </section>
+
+      <div class="divider-airmail" aria-hidden="true"></div>
 
       <section aria-label="note list">
         <h2>notes list (placeholders)</h2>
@@ -175,21 +200,21 @@
       <ul>
         <li>
           <a href="index.html">
-            <img src="assets/default.png" alt="home icon" />
+            <img src="assets/icons/globe.svg" alt="home icon" />
             <span>home</span>
           </a>
         </li>
 
         <li>
           <a href="stargaze.html">
-            <img src="assets/default.png" alt="stargazing icon" />
+            <img src="assets/icons/telescope.svg" alt="stargazing icon" />
             <span>stargazing</span>
           </a>
         </li>
 
         <li>
           <a href="archive.html">
-            <img src="assets/default.png" alt="message archive icon" />
+            <img src="assets/icons/list.svg" alt="message archive icon" />
             <span>message archive</span>
           </a>
         </li>

@@ -4,29 +4,53 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/nav.js" defer></script>
     <script src="https://virtualsky.lco.global/embed.js"></script>
     <script src="js/stargaze.js"></script>
     <title>stargazing · our journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+4:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
+
   </head>
 
   <body>
-    <header class="topbar">
-      <div>
-        <p><a class="site-title" href="index.html"><strong>our journey</strong></a></p>
-      </div>
+    <header class="passport-topbar">
+      <a class="passport-brand" href="index.html" aria-label="passport to us home">
+        <img src="assets/default.png" alt="" aria-hidden="true" />
+        <div>
+          <p class="passport-eyebrow">passport</p>
+          <p class="passport-script">to us</p>
+          <span class="passport-tagline">valid for a lifetime</span>
+        </div>
+      </a>
 
-      <nav aria-label="top navigation">
-        <ul>
-          <li><a href="daily-note.html">daily note</a></li>
-          <li><a href="stargaze.html" aria-current="page">stargazing</a></li>
-          <li><a href="archive.html">message archive</a></li>
-        </ul>
+      <nav aria-label="top navigation" class="passport-nav top-nav" id="site-nav">
+        <a class="stamp" href="archive.html">message archive</a>
+        <a class="stamp" href="stargaze.html" aria-current="page">stargaze</a>
+        <a class="stamp" href="daily-note.html">daily note</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <div class="passport-meta">
+        <span>issued feb 14</span>
+        <span>valid for a lifetime</span>
+      </div>
     </header>
 
-    <main id="main">
+    <main id="main" class="page-stamp-area">
+      <div class="stamp-overlay stamp-sky-1 stamp-astana" aria-hidden="true"></div>
+      <div class="stamp-overlay stamp-sky-2 stamp-vietnam" aria-hidden="true"></div>
       <h1>stargazing</h1>
-      <section aria-label="sky viewer">
+      <section class="sky-frame" aria-label="sky viewer">
+        <div class="sky-label">
+          <span>same sky</span>
+          <span>different ground</span>
+        </div>
         <div id="sky-viewer" aria-label="virtual sky viewer">
           <iframe 
             id="sky-now"
@@ -55,12 +79,13 @@
         </div>
       </section>
 
-      <section aria-label="moments">
+      <section aria-label="moments" class="card card--stitched">
         <h2>moments</h2>
         <button type="button" data-sky="now">right now</button>
         <button type="button" data-sky="past">the night we met</button>
       </section>
 
+      <div class="divider-airmail" aria-hidden="true"></div>
 
       <section class="wish-corner" aria-label="wish corner">
         <h2>wish corner</h2>
@@ -98,21 +123,21 @@
       <ul>
         <li>
           <a href="index.html">
-            <img src="assets/default.png" alt="home icon" />
+            <img src="assets/icons/globe.svg" alt="home icon" />
             <span>home</span>
           </a>
         </li>
 
         <li>
           <a href="daily-note.html">
-            <img src="assets/default.png" alt="daily note icon" />
+            <img src="assets/icons/envelope.svg" alt="daily note icon" />
             <span>daily note</span>
           </a>
         </li>
 
         <li>
           <a href="archive.html">
-            <img src="assets/default.png" alt="message archive icon" />
+            <img src="assets/icons/list.svg" alt="message archive icon" />
             <span>message archive</span>
           </a>
         </li>

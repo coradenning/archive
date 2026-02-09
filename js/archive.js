@@ -7,9 +7,6 @@
       q: document.getElementById("q"),
       sender: document.getElementById("sender"),
       startDate: document.getElementById("startDate"),
-      endDate: document.getElementById("endDate"),
-      jumpDate: document.getElementById("jumpDate"),
-  
       apply: document.getElementById("apply"),
       reset: document.getElementById("reset"),
   
@@ -30,7 +27,7 @@
     let all = [];
     let filtered = [];
     let page = 1;
-    const PAGE_SIZE = 50;
+    const PAGE_SIZE = 15;
   
     // strict “new message starts here” detector
     const startRe = /^\d{4}\/\d{2}\/\d{2}\s+\d{2}:\d{2}\s+\|\s+[^:]+:\s*/;
@@ -145,12 +142,12 @@
         }).join("");
     }
   
-    function applyFilters({ jump = false } = {}) {
+    function applyFilters() {
       const q = els.q.value.trim().toLowerCase();
       const sender = els.sender.value.trim();
   
       const start = els.startDate.value ? new Date(els.startDate.value + "T00:00:00") : null;
-      const end = els.endDate.value ? new Date(els.endDate.value + "T23:59:59") : null;
+      const end = els.endDate?.value ? new Date(els.endDate.value + "T23:59:59") : null;
   
       filtered = all.filter(item => {
         if (sender && item.sender !== sender) return false;
@@ -164,13 +161,7 @@
         return true;
       });
   
-      if (jump && els.jumpDate.value) {
-        const jumpStart = new Date(els.jumpDate.value + "T00:00:00");
-        const idx = filtered.findIndex(x => x.date >= jumpStart);
-        page = idx === -1 ? 1 : Math.floor(idx / PAGE_SIZE) + 1;
-      } else {
-        page = 1;
-      }
+      page = 1;
   
       render();
     }
@@ -274,14 +265,11 @@
         els.q.value = "";
         els.sender.value = "";
         els.startDate.value = "";
-        els.endDate.value = "";
-        els.jumpDate.value = "";
+        if (els.endDate) els.endDate.value = "";
         filtered = all;
         page = 1;
         render();
       });
-  
-      els.jumpDate?.addEventListener("change", () => applyFilters({ jump: true }));
 
       if (els.toggleStatus && els.statusPanel) {
         els.toggleStatus.addEventListener("click", () => {
@@ -291,10 +279,22 @@
         });
       }
 
+      function scrollToFirstMessageIfBottom(btn) {
+        if (!btn.closest('[data-pager="bottom"]')) return;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const firstMsg = els.results?.querySelector(".msg");
+            if (!firstMsg) return;
+            firstMsg.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+      }
+
       els.prevButtons.forEach(btn => {
         btn.addEventListener("click", () => {
           page = Math.max(1, page - 1);
           render();
+          scrollToFirstMessageIfBottom(btn);
         });
       });
 
@@ -303,6 +303,7 @@
           const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
           page = Math.min(totalPages, page + 1);
           render();
+          scrollToFirstMessageIfBottom(btn);
         });
       });
     }
